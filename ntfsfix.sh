@@ -14,8 +14,7 @@ for point in "${points[@]}"; do
 		echo "All is good, nothing to see here. \"$point\" is mounted Move along."
 	else
 		if diskutil list | grep "$point" > /dev/null; then
-			diskutil unmount "$point"
-			sudo find /Volumes -maxdepth 1 -name "$point*" -exec rm -rf {} \;
+			diskutil unmount "$point" && sudo find /Volumes -maxdepth 1 -name "$point*" -exec rm -rf {} \;
 		else
 			echo "\"$point\" is not a valid volume"
 		fi
